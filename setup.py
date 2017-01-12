@@ -34,6 +34,7 @@ version_re = re.compile('''^\s*__version__ = ['"]([^'"]+)['"]''')
 
 def get_version(package, filename='__init__.py'):
     '''Find the __version__ attribute of the specified package.'''
+    print(package)
     with open(os.path.join(package, filename)) as f:
         for line in f:
             match = version_re.search(line)
@@ -43,9 +44,10 @@ def get_version(package, filename='__init__.py'):
 
 setup(
     name='Pegl',
-    version=get_version('pegl'),
+    version=get_version('src/pegl'),
     author='Tim Pederick',
     author_email='pederick@gmail.com',
+    package_dir={'pegl':'src', 'pegl.attribs':'src', 'pegl.ext':'src'},
     packages=['pegl', 'pegl.attribs', 'pegl.ext'],
     url='https://github.com/perey/pegl',
     description='Python 3 wrapper for the EGL API',
